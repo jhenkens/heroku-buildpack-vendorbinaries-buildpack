@@ -1,13 +1,15 @@
 Heroku buildpack: Vendor Binaries
 =================================
 
-This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for vendoring binaries into your project. It doesn't do anything else, so to actually compile your app you should use [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi) to combine it with a real buildpack.
+This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for vendoring binaries into your buildpack for compliation projects. It doesn't do anything else, so to actually compile your app you should use [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi) to combine it with a real buildpack.
+
+Note, this is used to install binaries for the build step only - such as binaries for gem native extension compilation (I'm looking at you, rugged, and your need of cmake).
 
 Usage
 -----
 
     $ ls
-    .vendor_urls
+    .vendor_buildpack_urls
     .buildpacks
 
     $ heroku create --stack cedar --buildpack http://github.com/dollar/heroku-buildpack-multi.git
@@ -16,9 +18,9 @@ Usage
     ...
     -----> Heroku receiving push
     -----> Fetching custom buildpack
-    -----> Found a .vendor_urls file
+    -----> Found a .vendor_buildpack_urls file
            Vendoring https://s3.amazonaws.com/my-bucket/foo.tar.gz
     ...
 
-The buildpack will detect that your app has a `.vendor_urls` file in the root. Each line in this file will be treated as a URL pointing at a tarball to fetch and extract into your application's root directory.
+The buildpack will detect that your app has a `.vendor_buildpack_urls` file in the root. Each line in this file will be treated as a URL pointing at a tarball to fetch and extract into your application's root directory.
 
