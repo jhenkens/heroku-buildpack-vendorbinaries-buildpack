@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ -f $1/.vendor_urls ]; then
-    echo "VendorBinaries"
+if [ -f $1/.vendor_buildpack_urls ]; then
+    echo "VendorBuildpackBinaries"
     exit 0
 else
     exit 1
